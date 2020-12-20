@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 import CustomeTextField from './CustomTextField';
-import SelectBorough from './SelectBorough';
+// import SelectBorough from './SelectBorough';
 
 
 export default class Layout extends React.Component {
@@ -153,12 +153,12 @@ export default class Layout extends React.Component {
                 inputHandler={this.textFieldsHandler}
                 text='Enter the Hospital Borough'/>
 
-            <SelectBorough customId='hospital-borough'
+            {/* <SelectBorough customId='hospital-borough'
                 label='Hospital Borough'
                 placeholder='Select the Borough'
                 name='hospitalBorough'
                 val={this.state.value}
-                onChange={this.handleChange}/>
+                onChange={this.handleChange}/> */}
 
 
             <CustomeTextField
