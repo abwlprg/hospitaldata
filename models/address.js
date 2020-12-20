@@ -38,9 +38,7 @@ const customSchema = new mongoose.Schema({
 			default: '',
 		}
 	},
-    phoneNumber : {
-        type: Number,
-	},
+
 	zipCode: {
 		type: Number
 	}

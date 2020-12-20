@@ -1,6 +1,10 @@
 import React from 'react';
-import CustomeTextField from './CustomTextField'
-import CustomTextArea from './CustomTextArea'
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
+import CustomeTextField from './CustomTextField';
+import SelectBorough from './SelectBorough';
+
 
 export default class Layout extends React.Component {
     constructor(props) {
@@ -10,18 +14,66 @@ export default class Layout extends React.Component {
             hospitalAddress: '',
             hospitalBorough: '',
             hospitalType: '',
-            hospitalDescription: '',
             hospitalZipcode: ''
         }
         this.textFieldsHandler = this.textFieldsHandler.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit= this.handleSubmit.bind(this);
     }
-    textFieldsHandler(event) {
-        if(event.target.name === 'hospitalDescription'){
+    //saves to the MOdels 
+    handleSubmit(event){ 
+        const hospitalSearch = {
+            facility_name: this.state.hospitalName,
+            address: this.state.hospitalAddress,  
+            borough: this.state.hospitalBorough,
+            facility_type : this.state.hospitalType,
+            zipCode : this.state.hospitalZipcode
+        };
+        fetch('/api/createHospital',{
+            method: 'POST',
+            body: JSON.stringify(hospitalSearch),
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        }).then((response) =>{
+            if(response.ok){
+                console.log('The Hospital Search was saved');
+            } else {
+                console.log('Problem when saving the search');
+            }
+        });
+        event.preventDefault();
+        console.log('Create a new Hospital Search')
+    }
+
+    handleChange(event){
+        if(event.target.value === 'Brooklyn'){
             this.setState({
-                hospitalDescription: event.target.value
+                borough: event.target.value = 'Brooklyn'
             });
-            console.log('Hospital Description: ' + this.state.hospitalDescription)
+            console.log('Borough: ' + this.state.hospitalBorough)
         }
+        if(event.target.value === 'Bronx'){
+            this.setState({
+                borough: event.target.value = 'Bronx'
+            });
+            console.log('Borough: ' + this.state.hospitalBorough)
+        }
+        if(event.target.value === 'Queens'){
+            this.setState({
+                borough: event.target.value = 'Queens'
+            });
+            console.log('Borough: ' + this.state.hospitalBorough)
+        }
+        if(event.target.value === 'Manhattan'){
+            this.setState({
+                borough: event.target.value = 'Manhattan'
+            });
+            console.log('Borough: ' + this.state.hospitalBorough)
+        }
+    }
+
+    textFieldsHandler(event) {
         if(event.target.name === 'hospitalZipcode'){
             this.setState({
                 hospitalZipcode: event.target.value
@@ -54,18 +106,26 @@ export default class Layout extends React.Component {
             });
             console.log('Hospital Address: ' + this.state.hospitalAddress)
         }
-
-    
     }
+
+    // componentDidMount() {
+    //     axios
+    //      .get('https://data.cityofnewyork.us/resource/f7b6-v6v3.json')
+    //      .then(response => { 
+    //           console.log(response)
+    //           this.setState({
+    //               schemas: response
+    //           });
+    //      })
+    //      .catch(error => console.log(error.response));
+    // }
+
 
     render() {
         return (
-            <div>
-            <CustomTextArea 
-                label='Hospital Description'
-                name='hospitalDescription'
-                val={this.state.hospitalDescription}
-                inputHandler={this.textFieldsHandler}/>
+            <Form
+            onSubmit={this.handleSubmit}
+            >
             <CustomeTextField
                 customId='hospital-name'
                 label='Hospital Name'
@@ -92,7 +152,15 @@ export default class Layout extends React.Component {
                 val={this.state.hospitalBorough}
                 inputHandler={this.textFieldsHandler}
                 text='Enter the Hospital Borough'/>
-                
+
+            <SelectBorough customId='hospital-borough'
+                label='Hospital Borough'
+                placeholder='Select the Borough'
+                name='hospitalBorough'
+                val={this.state.value}
+                onChange={this.handleChange}/>
+
+
             <CustomeTextField
                 customId='hospital-address'
                 label='Hospital Address'
@@ -109,7 +177,15 @@ export default class Layout extends React.Component {
                 val={this.state.hospitalZipcode}
                 inputHandler={this.textFieldsHandler}
                 text='Enter the Zipcode'/>
-            </div>
+
+            <Button
+            type='submit'
+            variant='primary'
+            size='lg'>
+            Create A Hospital Search
+            </Button>
+
+            </Form>
             
         );
     }

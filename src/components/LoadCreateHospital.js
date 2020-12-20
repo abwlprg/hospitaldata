@@ -7,7 +7,7 @@ export default function LoadCreateHospital(props) {
     return (
         <Jumbotron>
         <Card>
-            <Card.Header as = 'h4'> Create a Hospital </Card.Header>
+            <Card.Header as = 'h4'> Search For Hsopital </Card.Header>
 
             <Card.Body> <Layout/> </Card.Body>        
         </Card>
