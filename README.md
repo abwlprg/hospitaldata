@@ -1,16 +1,16 @@
 # hospitaldata
 
-npm i
+#npm i
 
-npm start 
+#npm start 
 
 #If you have webpack-cli installed globablly.  
-webpack
+#webpack
 
-If you want to have fun with webpack and nerdout a bit
-node_modules/.bin/webpack --json | webpack-bundle-size-analyzer
+#If you want to have fun with webpack and nerdout a bit
+#node_modules/.bin/webpack --json | webpack-bundle-size-analyzer
 
-The Good
+#The Good:
 Backend and Server complete. Can save and delete dummy data. Not from the Front End tho. 
 Since I work on controllers and routes alot at work.
 React Routers and React Router-Dom implemented from memory pretty okay.
@@ -22,7 +22,7 @@ Routes are all set up with Express and Node. That was easy.
 Whole thing is made entirely from the ground up without even using "Create-React-App", this felt good.
 And was having fun with Bootstrap again
 
-The Bad
+#The Bad:
 Super Rushed since I had to start from scratch on Thursday afternoon, well Friday if you want to be honest since it took a day to back up from an August 11, 2020
 Time Machine backup.
 Sloppy. I can add a webpack plugin that can make all certain files have their own directory but at this point, I am alright.
